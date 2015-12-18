@@ -29,10 +29,9 @@ class ET_ProfileAttribute():
     def __init__(self):
         self.obj_type = 'PropertyDefinition'
         self.update = False
-        self.delete = False
 
     def post(self):       
-        obj = ET_Configure(self.auth_stub, self.obj_type, self.props, self.update, self.delete)
+        obj = ET_Configure(self.auth_stub, self.obj_type, self.props, self.update)
         if obj is not None:
             self.last_request_id = obj.request_id
         return obj
@@ -87,6 +86,21 @@ class ET_ClickEvent(ET_GetSupport):
 ##  wrap an Exact Target List and List Subscriber
 ##
 ########
+class ET_Group(ET_CUDSupport):
+    def __init__(self):
+        super(ET_Group, self).__init__()
+        self.obj_type = 'Group'
+
+class ET_Send(ET_CUDSupport):
+    def __init__(self):
+        super(ET_Send, self).__init__()
+        self.obj_type = 'Send'
+    
+class ET_ListSend(ET_CUDSupport):
+    def __init__(self):
+        super(ET_ListSend, self).__init__()
+        self.obj_type = 'ListSend'
+    
 class ET_List(ET_CUDSupport):
     def __init__(self):
         super(ET_List, self).__init__()
@@ -95,7 +109,12 @@ class ET_List(ET_CUDSupport):
 class ET_List_Subscriber(ET_GetSupport):
     def __init__(self):
         super(ET_List_Subscriber, self).__init__()
-        self.obj_type = 'ListSubscriber'    
+        self.obj_type = 'ListSubscriber'
+
+class ET_Subscriber_List(ET_GetSupport):
+    def __init__(self):
+        super(ET_Subscriber_List, self).__init__()
+        self.obj_type = 'SubscriberList'
 
 class ET_SentEvent(ET_GetSupport):
     def __init__(self):
