@@ -158,8 +158,8 @@ class ET_Filter(object):
     def complexFilter(self, leftOperand, rightOperand, logicalOperator, additionalOperands):
         complexFilter = self.auth_stub.soap_client.factory.create('ComplexFilterPart')
 
-        complexFilter["LeftOperand"] = self.filterFor(self.auth_stub, leftOperand)
-        complexFilter["RightOperand"] = self.filterFor(self.auth_stub, rightOperand)
+        complexFilter["LeftOperand"] = self.filterFor(leftOperand)
+        complexFilter["RightOperand"] = self.filterFor(rightOperand)
         complexFilter["LogicalOperator"] = logicalOperator
 
         for op in additionalOperands:
@@ -188,7 +188,7 @@ class ET_Filter(object):
                                    operand["LogicalOperator"],
                                    operand.get('AdditionalOperands', []))
         else:
-            result = self.simpleFilter(self.auth_stub, operand)
+            result = self.simpleFilter(operand)
 
         return result
 
